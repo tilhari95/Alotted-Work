@@ -105,7 +105,7 @@
 	<div align="center">
 		<h6>${WelcomeMessage}</h6>
 	</div>
-	<div class="row container" id="box">
+	<div class="row container " id="box">
 		<div class="col m6 s12 ">
 
 			<img src="static/images/logo.jpeg" width="500px">
@@ -113,14 +113,14 @@
 				method="post">
 				<div class="row ">
 					<div class="input-field col s12  grey lighten-4">
-						<i class="material-icons prefix">account_circle</i> <input
-							id="icon_prefix" type="text" class="validate"> <label
+						 <input
+							id="icon_prefix" type="text" class="validate" /> <label
 							for="icon_prefix">Name</label>
 					</div>
 				</div>
 				<div class="row">
 					<div class="input-field ">
-						<select class="browser-default  grey lighten-4" name="Gender">
+						<select class="browser-default  grey lighten-2" name="Gender">
 
 							<option value="" disabled selected>Gender</option>
 							<option value="I">He</option>

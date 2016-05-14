@@ -44,9 +44,10 @@ public class SignUpSignInController {
 	public ModelAndView login(
 			@RequestParam("input") String input, @RequestParam("password") String password)
 	{
-		int flag=0;
+		
 		ModelAndView model;
 		model = new ModelAndView("index");
+		model.addObject("WelcomeMessage" , "Wrong credentials.");
 		Session session = sessionFactory.openSession();
 		List<Signup> es = session.createCriteria(Signup.class).list();
 		for (Signup e : es)
@@ -55,15 +56,12 @@ public class SignUpSignInController {
 					&&
 					(password.equals(e.getPassword())))
 			{
+				model = new ModelAndView("loginsuccess");
 				model.addObject("WelcomeMessage" , "You have successfully logged in !!");
-				flag=1;	
-				return model;
+		
+				break;
 			}
 		}
-			if(flag==0)
-			{
-				model.addObject("WelcomeMessage" , "Wrong credentials.");
-			}
 			return model;
 		}
 }
