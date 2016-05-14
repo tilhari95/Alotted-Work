@@ -1,0 +1,21 @@
+html { 
+	background: url(../images/image.jpg) no-repeat center center fixed; 
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+#box {
+	margin-top: 5%;
+
+}
+#btn {
+	width: 40%;
+	background-color: black;
+	color: white;
+	font-size: 10px;
+	border: 2px white solid;
+	border-radius: 5px;
+	text-align: center;
+	opacity: 0.7;
+}
