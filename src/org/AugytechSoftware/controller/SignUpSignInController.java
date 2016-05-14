@@ -1,6 +1,9 @@
 package org.AugytechSoftware.controller;
 
+import java.util.List;
+
 import org.AugytechSoftware.model.Signup;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,48 +24,82 @@ public class SignUpSignInController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView getIndex() {
 		ModelAndView model = new ModelAndView("index");
-		model.addObject("WelcomeMessage" , "");
+		model.addObject("WelcomeMessage", "");
 		return model;
 	}
 
 	@RequestMapping(value = "/SignUpController", method = RequestMethod.POST)
-	public ModelAndView submitAdmissionForm(
-			@ModelAttribute("registration") org.AugytechSoftware.model.Signup signup) {
+	public ModelAndView submitAdmissionForm(@ModelAttribute("registration") org.AugytechSoftware.model.Signup signup)
+	{
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		session.save(signup);
 		session.getTransaction().commit();
 		ModelAndView model = new ModelAndView("index");
-		model.addObject("WelcomeMessage" , "You have successfully registered !! Login to continue.");
+		model.addObject("WelcomeMessage", "You have successfully registered !! Login to continue.");
 		return model;
 	}
+
 	@RequestMapping(value = "/LoginController", method = RequestMethod.POST)
 	public ModelAndView login(
 			@RequestParam("input") String input, @RequestParam("password") String password)
 	{
+		int flag=0;
 		ModelAndView model;
+		model = new ModelAndView("index");
 		Session session = sessionFactory.openSession();
-		signup = (Signup) session.get(Signup.class, input);
-		if(signup!=null)
+		List<Signup> es = session.createCriteria(Signup.class).list();
+		for (Signup e : es)
 		{
-		if (signup.getPassword().equals(password))
+			if(( (input.equals(e.getPhone()))||(input.equals(e.getEmail())))
+					&&
+					(password.equals(e.getPassword())))
 			{
-			model = new ModelAndView("index");
-			model.addObject("WelcomeMessage" , "You have successfully logged in !!");
+				model.addObject("WelcomeMessage" , "You have successfully logged in !!");
+				flag=1;	
+				return model;
 			}
-		else
-		{
-			model = new ModelAndView("index");
-			model.addObject("WelcomeMessage" , "Wrong credentials.");
-
 		}
+			if(flag==0)
+			{
+				model.addObject("WelcomeMessage" , "Wrong credentials.");
+			}
+			return model;
 		}
-		else
-		{
-			model = new ModelAndView("index");
-			model.addObject("WelcomeMessage" , "Wrong credentials.");
-		}
-		return model;
-	}
-
 }
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	
