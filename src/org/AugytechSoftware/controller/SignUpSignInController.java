@@ -3,7 +3,7 @@ package org.AugytechSoftware.controller;
 import java.util.List;
 
 import org.AugytechSoftware.model.Signup;
-import org.hibernate.Query;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,17 +20,28 @@ public class SignUpSignInController {
 	SessionFactory sessionFactory;
 	@Autowired
 	Signup signup;
-
+	public static String sessionname="NULL";
+	public static String credential="NULL";
+	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView getIndex() {
-		ModelAndView model = new ModelAndView("index");
+		ModelAndView model;
+		if(credential.equals("NULL"))
+		{
+		model= new ModelAndView("index");
 		model.addObject("WelcomeMessage", "");
+		}
+		else
+		{
+			model = new ModelAndView("loginsuccess");
+			model.addObject("sessionname", sessionname);
+			model.addObject("WelcomeMessage", "You are already logged in !!");
+		}
 		return model;
 	}
 
 	@RequestMapping(value = "/SignUpController", method = RequestMethod.POST)
-	public ModelAndView submitAdmissionForm(@ModelAttribute("registration") org.AugytechSoftware.model.Signup signup)
-	{
+	public ModelAndView submitAdmissionForm(@ModelAttribute("signup") org.AugytechSoftware.model.Signup signup) {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		session.save(signup);
@@ -41,63 +52,40 @@ public class SignUpSignInController {
 	}
 
 	@RequestMapping(value = "/LoginController", method = RequestMethod.POST)
-	public ModelAndView login(
-			@RequestParam("input") String input, @RequestParam("password") String password)
-	{
-		
+	public ModelAndView login(@RequestParam("input") String input, @RequestParam("password") String password) {
+
 		ModelAndView model;
 		model = new ModelAndView("index");
-		model.addObject("WelcomeMessage" , "Wrong credentials.");
+		model.addObject("WelcomeMessage", "Wrong credentials.");
 		Session session = sessionFactory.openSession();
 		List<Signup> es = session.createCriteria(Signup.class).list();
-		for (Signup e : es)
-		{
-			if(( (input.equals(e.getPhone()))||(input.equals(e.getEmail())))
-					&&
-					(password.equals(e.getPassword())))
-			{
+		for (Signup e : es) {
+			if (((input.equals(e.getPhone())) || (input.equals(e.getEmail()))) && (password.equals(e.getPassword()))) {
 				model = new ModelAndView("loginsuccess");
-				model.addObject("WelcomeMessage" , "You have successfully logged in !!");
-		
+				model.addObject("sessionname", sessionname);
+				model.addObject("WelcomeMessage", "You have successfully logged in !!");
+				credential=input;
 				break;
 			}
 		}
-			return model;
+		return model;
+	}
+
+	@RequestMapping(value = "/defaultform", method = RequestMethod.POST)
+	public ModelAndView getForm(@RequestParam("name") String name) {
+		sessionname=name;
+		ModelAndView model;
+		if(credential.equals("NULL"))
+		{
+		model= new ModelAndView("index");
+		model.addObject("WelcomeMessage", "");
 		}
+		else
+		{
+			model = new ModelAndView("loginsuccess");
+			model.addObject("sessionname", sessionname);
+			model.addObject("WelcomeMessage", "You have successfully logged in !!");
+		}
+		return model;
+	}
 }
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-	

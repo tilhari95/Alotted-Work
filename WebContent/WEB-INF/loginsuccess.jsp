@@ -14,7 +14,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <!-- My Stuff -->
-<title>MCQ - Module</title>
+<title>Assignment</title>
 <link rel="stylesheet" type="text/css" href="static/css/style.css">
 </head>
 
@@ -22,12 +22,11 @@
 
 	<div class="row">
 		<div class="col m3 s12 offset-m9">
-			<!-- <img src="static/images/logo.jpeg" width="300px">
-                     -->
+			
 			<br>
-			<br> <a
-				class="waves-effect waves-light modal-trigger 1 brown darken-1"
-				id="btn"><p id="btn-txt">Name</p></a> 
+			<br> 
+				<a class="waves-effect waves-light  brown darken-4"
+				id="btn"><p id="btn-txt">${sessionname}</p></a> 
 				<a class='dropdown-button btn  brown lighten-1' href='#' data-activates='dropdown1'><i class="large material-icons">settings</i></a>
 				<ul id='dropdown1' class='dropdown-content'>
 			    <li><a href="#!" class=" brown lighten-1 white-text" >Profile</a></li>
@@ -46,12 +45,12 @@
 		<div class="col m6 s12 ">
 
 			<img src="static/images/logo.jpeg" width="500px">
-			<form class="col s12" action="/gdgmcq/LoginController.html"
+			<form class="col s12" action="/AugytechSoftware/defaultform.html"
 				method="post">
 				<div class="row ">
 					<div class="input-field col s12  grey lighten-4">
 						<input
-							id="icon_prefix" type="text" class="validate" /> <label
+							id="icon_prefix" type="text" class="validate" name="name" /> <label
 							for="icon_prefix">Name</label>
 					</div>
 				</div>

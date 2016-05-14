@@ -14,7 +14,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <!-- My Stuff -->
-<title>MCQ - Module</title>
+<title>Assignment</title>
 <link rel="stylesheet" type="text/css" href="static/css/style.css">
 </head>
 
@@ -22,8 +22,6 @@
 
 	<div class="row">
 		<div class="col m2 s12 offset-m10">
-			<!-- <img src="static/images/logo.jpeg" width="300px">
-                     -->
 			<br>
 			<br> <a
 				class="waves-effect waves-light modal-trigger 1 brown darken-1"
@@ -109,18 +107,16 @@
 		<div class="col m6 s12 ">
 
 			<img src="static/images/logo.jpeg" width="500px">
-			<form class="col s12" action="/gdgmcq/LoginController.html"
-				method="post">
+			<form class="col s12" action="/AugytechSoftware/defaultform.html" method="post">
 				<div class="row ">
 					<div class="input-field col s12  grey lighten-4">
-						 <input
-							id="icon_prefix" type="text" class="validate" /> <label
-							for="icon_prefix">Name</label>
+						 <input id="icon_prefix" type="text" class="validate" name="name" />
+							 <label for="icon_prefix">Name</label>
 					</div>
 				</div>
 				<div class="row">
 					<div class="input-field ">
-						<select class="browser-default  grey lighten-2" name="Gender">
+						<select class="browser-default  grey lighten-2" name="gender">
 
 							<option value="" disabled selected>Gender</option>
 							<option value="I">He</option>
